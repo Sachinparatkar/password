@@ -1,0 +1,79 @@
+  
+<body style="background-color: antiquewhite;">
+  
+
+
+
+<div *ngIf="anu==0">
+  <div *ngIf="log==0">
+   
+      <h1><b>Registration Page</b></h1> 
+    <table>
+    <tr><b> Name:</b><td><input type="text" [(ngModel)]="name" placeholder="Enter name"></td></tr>
+    <tr> <b> UserName:</b> <td><input type="text" [(ngModel)]="userName" placeholder="Enter username"></td></tr>
+    <tr><b> UserPassword: </b><td><input type="password"[(ngModel)]="userPassword" placeholder="Enter password"></td></tr>
+    <tr> <b> SecurityCode: </b> <td><input type="password"[(ngModel)]="securityCode" placeholder="Enter SecurityCode"></td></tr>
+    <td> <b> <button (click)="register()" style="background-color: azure ;  "   >Register</button></b>
+      &nbsp;
+    <button (click)="submit()" style="background-color:azure">LogIn</button></td><br>
+   </table><br>
+   <table border="1">
+   
+  </table>
+  </div>
+  </div>
+  <div *ngIf="anu==1">
+  <div *ngIf="j==1">
+    <div *ngIf="log==0">
+      <h1><b>WELCOME</b></h1>
+      <b> Username: </b><input type="text" [(ngModel)]="username" placeholder="Enter username"><br><br>
+     <b> Password: </b><input type="password" [(ngModel)]="password" placeholder="Enter password"><br>
+      <button (click)="LogIn()" [disabled]="username==undefined || password==undefined || username.length<3 || password.length<3" style="background-color: azure;">LogIn</button>
+        <br>
+     &nbsp;
+        <td></td> <button (click)="ForgetPassword()" style="background-color: azure;">Forget Password</button>
+        &nbsp;
+      <button (click)="AfterSubmit()" style="background-color: azure;">Back</button>
+    </div>
+  </div>
+  </div>
+  <div *ngIf="log==1">
+    <h1><b>User Page</b></h1>
+    WELCOME:<b>{{user.name}}</b>
+   <b> <button (click)="logout()" style="background-color: azure;">LogOut</button></b>
+    <table border="1">
+      <tr>
+        <td>Id</td>
+        <td>Details</td>
+        <td>Status</td>
+        <td>Action</td>
+      </tr>
+      <tr *ngFor="let task of user.task, let i=index">
+        <td>{{i+1}}</td>
+        <td>{{task.details}}</td>
+        <td>{{task.status}}</td>
+        <td><button (click)="Delete(task)">Delete</button>
+          <td><button (click)="changeStatus(task,0)">NotYetStarted</button>
+            <td><button (click)="changeStatus(task,1)">Started</button>
+              <td><button (click)="changeStatus(task,2)">Done</button>
+        </td>
+    </tr>
+  </table><br>
+  Details:<input type="text" [(ngModel)]="details"><br><br>
+  <button  (click)="add()">ADD</button>
+  </div>
+  <div *ngIf="j==0">
+        <h1>Security Check</h1>
+        Username:<input type="text" [(ngModel)]="username" placeholder="Enter username"><br><br>
+        Security Code:<input type="password" [(ngModel)]="sQode" placeholder="Enter Sqcurity Code"><br><br>
+        <button (click)="checkCode()">Submit Code</button>
+        <button (click)="backtologin()">BackToLogIn</button>
+    </div>
+  <div *ngIf="isCode==true">
+      <h1>Forget Password</h1>
+      New Password:<input type="password" [(ngModel)]="password" placeholder="Enter new password"><br><br>
+      Confirm Password:<input type="password" [(ngModel)]="ConfirmPass" placeholder="Conifrm password"><br><br>
+      <button (click)='changepsassword()'>Submit</button>
+  </div>
+</body>
+  
